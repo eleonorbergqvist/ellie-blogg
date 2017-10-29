@@ -7,16 +7,28 @@ spl_autoload_register(function ($className) {
     include __DIR__ . '/' . $file;
 });
 
-new Models\Post();
+$uri = $_SERVER['REQUEST_URI'];
+$trimuri = trim($uri, '/');
+$path = explode("/", $trimuri);
 
+$urls = [
+    ["adminlogin", new Controllers\AdminLogin()],
+    ["adminhome", new Controllers\AdminHome()],
+    ["adminpostcreate", new Controllers\AdminPostCreate()],
+    ["adminpostupdate", new Controllers\AdminLogin()],
+    ["adminpostdelete", new Controllers\AdminPostDelete()],
+    ["postdetail", new Controllers\PostDetail()],
+    ["postlist", new Controllers\PostList()],
+    ["", new Controllers\Home()],
+];
 
-echo "My first php server ellie pellie"; 
+foreach ($urls as $url){
+    if ($url[0] !== $path[0]) {
+        continue;
+    }
 
-var_dump($_POST);
-
-
-
-
-
+    $params = array_slice($path, 1);
+    return $url[1]->get($params)->render();
+}
 
 ?>

@@ -5,7 +5,7 @@ namespace Controllers;
 
 class Home {
 
-    function get(){
+    function get($request, $params){
         echo "Home";
     }
 

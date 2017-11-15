@@ -4,7 +4,7 @@ namespace Controllers;
 
 class AdminLogin {
 
-    function get(){
+    function get($request, $params){
         echo "AdminLogin";
     }
 

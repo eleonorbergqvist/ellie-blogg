@@ -4,7 +4,7 @@ namespace Controllers;
 
 class AdminPostCreate {
 
-    function get(){
+    function get($request, $params){
         echo "AdminHome";
     }
 

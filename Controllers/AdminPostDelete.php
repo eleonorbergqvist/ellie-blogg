@@ -4,7 +4,7 @@ namespace Controllers;
 
 class AdminPostDelete {
 
-    function get(){
+    function get($request, $params){
         echo "AdminPostDelete";
     }
 

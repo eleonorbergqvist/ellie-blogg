@@ -28,7 +28,7 @@ foreach ($urls as $url){
     }
 
     $params = array_slice($path, 1);
-    return $url[1]->get($params)->render();
+    return $url[1]->get(null, $params)->render();
 }
 
 ?>

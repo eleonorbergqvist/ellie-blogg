@@ -7,7 +7,7 @@ use \Views\PostDetail as PostDetailView;
 
 class PostDetail {
 
-    function get($params){
+    function get($request, $params){
         $postId = $params[0];
         $post = Post::get($postId);
 

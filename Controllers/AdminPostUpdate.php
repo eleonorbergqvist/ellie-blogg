@@ -4,7 +4,7 @@ namespace Controllers;
 
 class AdminPostUpdate {
 
-    function get(){
+    function get($request, $params){
         echo "AdminPostUpdate";
     }
 

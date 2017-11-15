@@ -3,6 +3,10 @@
 
 namespace Controllers; 
 
+use Models\Post;
+use \Core\View;
+
+
 class PostList {
 
     function get($request, $params) {
@@ -17,5 +21,6 @@ class PostList {
             //döper till post eftersom nummer inte kan vara variabler och det är dåligt.
         ]);
     }
-
 }
+
+

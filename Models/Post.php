@@ -15,6 +15,10 @@ class Post
         return $this->fields[$name];
     }
 
+    function getUrl() {
+        return '/postdetail/'.$this->getField('id');
+    }
+
     static function get ($id) {
         $rows = Db::getInstance()->query("SELECT * FROM posts WHERE id=$id");
         $row = $rows[0];

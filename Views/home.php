@@ -1,6 +1,6 @@
 <div class="jumbotron jumbotron-fluid" style="margin-bottom: 0">
           <div class="container">
-            <h1 class="display-3">Postdetail</h1>
+            <h1 class="display-3">Poststart</h1>
             <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
           </div>
         </div>
@@ -30,10 +30,7 @@
                     <h4 class="card-title"><?= $post->getField('title'); ?></h4>
                     <p class="card-text"><?= $post->getField('content'); ?></p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    <button type="button" class="btn btn-secondary btn-sm">Tag</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Small button</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Small button</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Small button</button>
+                    <a class="btn btn-primary" href="<?= $post->getUrl(); ?>">Läs mer</a>
                   </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@ namespace Controllers;
 
 use Models\Post;
 use \Views\PostDetail as PostDetailView;
+use \Core\View;
 
 
 class PostDetail {
@@ -14,13 +15,12 @@ class PostDetail {
         //get select blablab mysql
         // var_dump(Db::getInstance());
         /*
-        return new Response('Views/postdetail.php', [
-            'post' => $post,
-        ]);
+
         */
 
-        return new PostDetailView([
+        return new View('postdetail.php', [
             'post' => $post,
+            'title' => $post->getField('title'),
         ]);
     }
 }

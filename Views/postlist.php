@@ -1,6 +1,6 @@
-<div class="jumbotron jumbotron-fluid" style="margin-bottom: 0">
+ <div class="jumbotron jumbotron-fluid" style="margin-bottom: 0">
           <div class="container">
-            <h1 class="display-3">Postdetail</h1>
+            <h1 class="display-3">Postlist</h1>
             <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
           </div>
         </div>
@@ -20,20 +20,37 @@
           </div>
         </nav>
 
+        
+
 
         <div class="container">
           <div class="row">
             <div class="col" style="background: lightblue">
               <div class="card mb-3">
-                  <img class="card-img-top" src=<?= "\"" . "../media/" . $post->getField('image_path') . "\""; ?> alt="Card image cap">
+                  <img class="card-img-top" src=<?= "\"" . "../media/" . $posts[0]->getField('image_path') . "\""; ?> alt="Card image cap">
                   <div class="card-body">
-                    <h4 class="card-title"><?= $post->getField('title'); ?></h4>
-                    <p class="card-text"><?= $post->getField('content'); ?></p>
+                    <h4 class="card-title">
+                      <?= $posts[0]->getField('title')?>
+
+                    </h4>
+                    <p class="card-text"><?= $posts[0]->getField('content')?></p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    <button type="button" class="btn btn-secondary btn-sm">Tag</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Small button</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Small button</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Small button</button>
+                  </div>
+                </div>
+                <div class="card mb-3">
+                  <img class="card-img-top" src=<?= "\"" . "../media/" . $posts[1]->getField('image_path') . "\""; ?> alt="Card image cap">
+                  <div class="card-body">
+                    <h4 class="card-title"><?= $posts[1]->getField('title')?></h4>
+                    <p class="card-text"><?= $posts[1]->getField('content')?></p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+                <div class="card mb-3">
+                  <img class="card-img-top" src=<?= "\"" . "../media/" . $posts[2]->getField('image_path') . "\""; ?> alt="Card image cap">
+                  <div class="card-body">
+                    <h4 class="card-title"><?= $posts[2]->getField('title')?></h4>
+                    <p class="card-text"><?= $posts[2]->getField('content')?></p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                   </div>
                 </div>
             </div>
@@ -85,3 +102,18 @@
             </div>
           </div>
         </div>
+        
+
+        <nav aria-label="Page navigation example" style="margin-top: 30px">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>

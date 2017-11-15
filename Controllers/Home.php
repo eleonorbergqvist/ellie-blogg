@@ -10,7 +10,6 @@ use \Core\View;
 class Home {
 
     function get($request, $params){
-        echo "Home";
         $post = Post::getLatest();
 
         return new View('home.php', [

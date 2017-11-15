@@ -1,6 +1,8 @@
 <?php 
-error_reporting(-1);
-ini_set('display_errors', 'On');
+# TODO: Wrap this in config parameter
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('html_errors', 1);
 
 spl_autoload_register(function ($className) {
     $file = str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';

@@ -16,8 +16,27 @@ class Post
     }
 
     static function get ($id) {
-        $data = Db::getInstance()->query("SELECT * FROM posts WHERE id=$id");
-        return new Post($data);
+        $rows = Db::getInstance()->query("SELECT * FROM posts WHERE id=$id");
+        $row = $rows[0];
+
+        return new Post($row);
+    }
+
+    static function getFiltered($offset, $limit) {
+        $rows = Db::getInstance()->query("SELECT * FROM posts LIMIT $offset,$limit");
+
+        foreach ($rows as $row) {
+            $models[] = new Post($row);
+        }
+        
+        return $models;
+    }
+
+    static function getLatest() {
+        $rows = Db::getInstance()->query("SELECT * FROM posts ORDER BY id DESC LIMIT 1");
+        $row = $rows[0];
+
+        return new Post($row);
     }
 }
 

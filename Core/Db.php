@@ -35,7 +35,7 @@ class Db {
     public function query($sql) {
         $statement = $this->pdo->prepare($sql);
         $statement->execute();
-        return $statement->fetch();
+        return $statement->fetchAll();
     }
 
     public static function getInstance()

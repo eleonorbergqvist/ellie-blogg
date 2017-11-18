@@ -24,13 +24,20 @@ $urls = [
     ["", new Controllers\Home()],
 ];
 
+$request = Core\Request::createFromServer();
+
 foreach ($urls as $url){
     if ($url[0] !== $path[0]) {
         continue;
     }
 
     $params = array_slice($path, 1);
-    return $url[1]->get(null, $params)->render();
+
+    if($request->method == "POST") {
+        return $url[1]->post($request, $params)->render();
+    }
+
+    return $url[1]->get($request, $params)->render();
 }
 
 ?>

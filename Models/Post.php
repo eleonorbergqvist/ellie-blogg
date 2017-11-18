@@ -36,6 +36,13 @@ class Post extends Model
 
         return new Post($row);
     }
+
+    static function getCount() {
+        $rows = Db::getInstance()->query("SELECT count(id) FROM posts");
+        $row = $rows[0][0];
+
+        return $row;
+    }
 }
 
 ?>

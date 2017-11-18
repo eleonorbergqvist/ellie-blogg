@@ -11,7 +11,9 @@ spl_autoload_register(function ($className) {
 
 $uri = $_SERVER['REQUEST_URI'];
 $trimuri = trim($uri, '/');
-$path = explode("/", $trimuri);
+$path = explode("?", $trimuri);
+$path = $path[0];
+$path = explode("/", $path);
 
 $urls = [
     ["adminlogin", new Controllers\AdminLogin()],

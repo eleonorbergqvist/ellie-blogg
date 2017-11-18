@@ -9,6 +9,10 @@ class Post extends Model
         return '/postdetail/'.$this->getField('id');
     }
 
+    function getCategory() {
+        return Category::get($this->getField('category_id'));
+    }
+
     static function get ($id) {
         $rows = Db::getInstance()->query("SELECT * FROM posts WHERE id=$id");
         $row = $rows[0];

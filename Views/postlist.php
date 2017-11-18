@@ -5,35 +5,27 @@
 
         <div class="container">
           <div class="row">
+            <!-- Post list -->
             <div class="col" style="background: lightblue">
-              <div class="card mb-3">
-                  <img class="card-img-top" src=<?= "\"" . "../media/" . $posts[0]->getField('image_path') . "\""; ?> alt="Card image cap">
+              <?php foreach ($posts as $post): ?>
+                <div class="card mb-3">
+                  <img class="card-img-top" src=<?= "\"" . "../media/" . $post->getField('image_path') . "\""; ?> alt="Card image cap">
                   <div class="card-body">
                     <h4 class="card-title">
-                      <?= $posts[0]->getField('title')?>
+                      <?= $post->getField('title')?>
 
                     </h4>
-                    <p class="card-text"><?= $posts[0]->getField('content')?></p>
+                    <p class="card-text"><?= $post->getField('content')?></p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <?php if ($post->getField('category_id')): ?>
+                      <button type="button" class="btn btn-secondary btn-sm"><?= $post->getCategory()->getField('name'); ?></button>
+                    <?php endif; ?>
                   </div>
+
                 </div>
-                <div class="card mb-3">
-                  <img class="card-img-top" src=<?= "\"" . "../media/" . $posts[1]->getField('image_path') . "\""; ?> alt="Card image cap">
-                  <div class="card-body">
-                    <h4 class="card-title"><?= $posts[1]->getField('title')?></h4>
-                    <p class="card-text"><?= $posts[1]->getField('content')?></p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                </div>
-                <div class="card mb-3">
-                  <img class="card-img-top" src=<?= "\"" . "../media/" . $posts[2]->getField('image_path') . "\""; ?> alt="Card image cap">
-                  <div class="card-body">
-                    <h4 class="card-title"><?= $posts[2]->getField('title')?></h4>
-                    <p class="card-text"><?= $posts[2]->getField('content')?></p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                </div>
+              <?php endforeach ?>
             </div>
+
             <div class="col-4" style="background: pink; margin-left: 30px;">
                 <div>
                     <h4>Follow</h4>

@@ -4,6 +4,8 @@
 namespace Controllers; 
 
 use Models\Post;
+use Models\Category;
+use Models\Tag;
 use \Core\View;
 
 
@@ -11,18 +13,19 @@ class PostList {
 
     function get($request, $params) {
 
+        /*
         $offset = isset($request->vars['offset']) ? $request->vars['offset'] : 0;
         $totalPosts = Post::getCount();
         $postsPerPage = 3;
+        */
 
-        $posts = Post::getFiltered($offset, $postsPerPage);
-
+        $posts = Post::getAll();
 
         return new View('postlist.php', [
+            'pageTitle' => 'Archive',
             'posts' => $posts,
-            'offset' => $offset,
-            'totalPosts' => $totalPosts,
-            'postsPerPage' => $postsPerPage
+            'categories' => Category::getAll(),
+            'tags' => Tag::getAll(),
             //key => $value
             //döper till post eftersom nummer inte kan vara variabler och det är dåligt.
         ]);

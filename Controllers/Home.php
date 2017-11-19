@@ -4,8 +4,10 @@
 namespace Controllers; 
 
 use Models\Post;
+use Models\Category;
+use Models\Tag;
 use \Core\View;
-// use \Views\
+// use \Core\Url;
 
 class Home {
 
@@ -13,9 +15,14 @@ class Home {
         $post = Post::getLatest();
 
         return new View('home.php', [
+            'pageTitle' => 'Hej',
             'post' => $post,
-            //key => $value
-            //Arrays and objects can not be used as keys. Doing so will result in a warning: Illegal offset type.
+            'categories' => Category::getAll(),
+            'tags' => Tag::getAll(),
         ]);
     }
 }
+
+
+
+

@@ -5,7 +5,7 @@
             </div>
           <?php endif; ?>
 
-          <form action="/adminlogin" method="post">
+          <form action="<?= $url('/adminlogin') ?>" method="post">
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
               <div class="col-sm-10">

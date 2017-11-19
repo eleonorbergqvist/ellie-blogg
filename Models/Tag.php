@@ -1,11 +1,12 @@
 <?php 
 namespace Models;
 use \Core\Db;
+use \Core\Url;
 
 class Tag extends Model
 {
     function getUrl() {
-        return '/tagpostlist/'.$this->getField('id');
+        return Url::gen('/tagpostlist/'.$this->getField('id'));
     }
 
     public function getPosts() {
@@ -34,17 +35,14 @@ class Tag extends Model
         return new self($row);
     }
 
-    static function getAllTags() {
+    static function getAll() {
         $rows = Db::getInstance()->query("SELECT * FROM tags");
         foreach ($rows as $row) {
             $models[] = new self($row);
         }
         
         return $models;
-    }
-
-
-    
+    }    
 }
 
 ?>

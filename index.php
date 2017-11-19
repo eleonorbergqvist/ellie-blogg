@@ -9,9 +9,17 @@ spl_autoload_register(function ($className) {
     include __DIR__ . '/' . $file;
 });
 
+include 'config.php';
+
 $uri = $_SERVER['REQUEST_URI'];
-$trimuri = trim($uri, '/');
-$path = explode("?", $trimuri);
+if (!empty(SUBPATH)) {
+    $uri = explode(SUBPATH, $uri);
+    $uri = array_filter($uri);
+    $uri = current($uri);
+}
+
+$uri = trim($uri, '/');
+$path = explode("?", $uri);
 $path = $path[0];
 $path = explode("/", $path);
 
@@ -19,11 +27,12 @@ $urls = [
     ["adminlogin", new Controllers\AdminLogin()],
     ["adminhome", new Controllers\AdminHome()],
     ["adminpostcreate", new Controllers\AdminPostCreate()],
-    ["adminpostupdate", new Controllers\AdminLogin()],
+    ["adminpostupdate", new Controllers\AdminPostUpdate()],
     ["adminpostdelete", new Controllers\AdminPostDelete()],
     ["postdetail", new Controllers\PostDetail()],
     ["postlist", new Controllers\PostList()],
     ["tagpostlist", new Controllers\TagPostList()],
+    ["categorypostlist", new Controllers\CategoryPostList()],
     ["", new Controllers\Home()],
 ];
 

@@ -3,23 +3,25 @@
 namespace Controllers; 
 
 use Models\Tag;
-use Models\Post;
 use Models\Category;
+use Models\Post;
 use \Core\View;
 
 
-class TagPostList {
+class CategoryPostList {
 
     function get($request, $params) {
-        $tagId = $params[0];
-        $tag = Tag::get($tagId);
-        $posts = $tag->getPosts();
+        $categoryId = $params[0];
+
+        $category = Category::get($categoryId);
+        $posts = $category->getPosts();
 
         return new View('postlist.php', [
-            'pageTitle' => 'Tagg: '.$tag->getField('name'),
+            'pageTitle' => 'Kategori: '.$category->getField('name'),
             'posts' => $posts,
             'categories' => Category::getAll(),
             'tags' => Tag::getAll(),
         ]);
+
     }
 }

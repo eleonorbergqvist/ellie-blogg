@@ -1,6 +1,8 @@
 <?php
 namespace Core;
 
+use \Core\Url;
+
 class View {
     private $template;
     private $data;
@@ -12,6 +14,10 @@ class View {
 
     public function render() {
         extract($this->data);
+
+        $url = function($path) {
+            return Url::gen($path);
+        };
 
         $template = $this->template;
 

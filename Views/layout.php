@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title><?= $title ?></title>
+        <title><?= $pageTitle ?></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -33,11 +33,15 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-              <a class="nav-item nav-link" href="#">Categories</a>
-              <a class="nav-item nav-link" href="#">Tags</a>
-              <a class="nav-item nav-link" href="#">Archive</a>
-              <a class="nav-item nav-link" href="#">Login</a>
+              <a class="nav-item nav-link active" href="<?= $url('/'); ?>">Home</a>
+              <a class="nav-item nav-link" href="<?= $url('/postlist'); ?>">Archive</a>
+              
+
+              <?php if (!isset($user)) :?>
+                <a class="nav-item nav-link" href="<?= $url('/adminlogin'); ?>">Login</a>
+              <?php else: ?>
+                <a class="nav-item nav-link" href="<?= $url('/adminlogout'); ?>">Logout</a>
+              <?php endif; ?>
             </div>
           </div>
         </nav>
@@ -45,9 +49,7 @@
         <main>
             <?php require($template); ?>
         </main>
-        <div class="container-fluid" style="background: lightgreen">
-            <p>Footer</p>
-        </div>
+
 
         <!--<script src="js/vendor/modernizr-{{MODERNIZR_VERSION}}.min.js"></script>
         <script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js" integrity="{{JQUERY_SRI_HASH}}" crossorigin="anonymous"></script>

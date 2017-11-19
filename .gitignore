@@ -1,4 +1,12 @@
+# OS
 tmp/
 .DS_Store
+
+# Tools
 adminer*
+
+# Uploads
 media
+
+# Config
+config.php

@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Models\User;
 use \Core\View;
+use \Core\Url;
 
 class AdminLogin {
 
@@ -16,7 +17,9 @@ class AdminLogin {
        // }
 
 
-        return new View('login.php', []);
+        return new View('login.php', [
+            'pageTitle' => 'Logga in',
+        ]);
     }
 
     function post($request, $params){
@@ -31,7 +34,8 @@ class AdminLogin {
             //setcookie("TestCookie", $value, time()+3600);  /* expire in 1 hour */
             //setcookie("TestCookie", $value, time()+3600, "/~rasmus/", "example.com", 1);
             
-            header('Location: '.'http://'.$request->domain.'/adminhome');
+            header('Location: '.'http://'.$request->domain.Url::gen('/adminhome'));
+            die();
 
         } catch (\Exception $e){
             return new View('login.php', [
@@ -39,7 +43,6 @@ class AdminLogin {
             ]);
         }
 
-        var_dump($user);
         
     }
 

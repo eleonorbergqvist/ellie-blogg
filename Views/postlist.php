@@ -20,6 +20,11 @@
                     <?php if ($post->getField('category_id')): ?>
                       <button type="button" class="btn btn-secondary btn-sm"><?= $post->getCategory()->getField('name'); ?></button>
                     <?php endif; ?>
+                    <?php foreach ($post->getTags() as $tag) : ?>
+                      <a href="<?= $tag->getUrl(); ?>" type="button" style="background: pink" class="btn btn-secondary btn-sm">
+                        <?= $tag->getField('name'); ?>
+                      </a>
+                    <?php endforeach; ?>
                   </div>
 
                 </div>

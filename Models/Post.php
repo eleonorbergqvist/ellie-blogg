@@ -13,18 +13,38 @@ class Post extends Model
         return Category::get($this->getField('category_id'));
     }
 
+    function getTags() {
+        $id = $this->getField('id');
+        $sql = "
+            SELECT tags.* 
+            FROM post_tag 
+            LEFT JOIN tags 
+                ON tags.id=post_tag.tag_id 
+            WHERE post_id=$id
+        ";
+        $rows = Db::getInstance()->query($sql);
+        $models = [];
+
+        foreach ($rows as $row) {
+            $models[] = new Tag($row);
+        }
+        
+        return $models;
+        
+    }
+
     static function get ($id) {
         $rows = Db::getInstance()->query("SELECT * FROM posts WHERE id=$id");
         $row = $rows[0];
 
-        return new Post($row);
+        return new self($row);
     }
 
     static function getFiltered($offset, $limit) {
         $rows = Db::getInstance()->query("SELECT * FROM posts LIMIT $offset,$limit");
 
         foreach ($rows as $row) {
-            $models[] = new Post($row);
+            $models[] = new self($row);
         }
         
         return $models;
@@ -34,7 +54,7 @@ class Post extends Model
         $rows = Db::getInstance()->query("SELECT * FROM posts ORDER BY id DESC LIMIT 1");
         $row = $rows[0];
 
-        return new Post($row);
+        return new self($row);
     }
 
     static function getCount() {

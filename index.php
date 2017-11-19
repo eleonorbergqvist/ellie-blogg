@@ -23,6 +23,7 @@ $urls = [
     ["adminpostdelete", new Controllers\AdminPostDelete()],
     ["postdetail", new Controllers\PostDetail()],
     ["postlist", new Controllers\PostList()],
+    ["tagpostlist", new Controllers\TagPostList()],
     ["", new Controllers\Home()],
 ];
 

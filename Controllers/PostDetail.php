@@ -14,12 +14,6 @@ class PostDetail {
         $postId = $params[0];
         $post = Post::get($postId);
 
-        //get select blablab mysql
-        // var_dump(Db::getInstance());
-        /*
-
-        */
-
         return new View('postdetail.php', [
             'pageTitle' => $post->getField('title'),
             'post' => $post,

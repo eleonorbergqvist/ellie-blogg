@@ -3,6 +3,7 @@
 namespace Models;
 use \Core\Db;
 use \Core\Url;
+use Models\PostTag;
 
 class Post extends Model
 {
@@ -38,7 +39,26 @@ class Post extends Model
         }
         
         return $models;
-        
+    }
+
+    function addTags($tagIds) {
+        $id = $this->getField('id');
+
+        $sql = "DELETE FROM post_tag WHERE post_id = $id";
+        $statement = Db::getInstance()->execute($sql);
+
+        $models = [];
+
+        foreach ($tagIds as $tagId) {
+            $tag = new PostTag([
+                'tag_id' => $tagId,
+                'post_id' => $id,
+            ]);
+            $tag->save();
+            $models[] = $tag;
+        }
+
+        return $models;
     }
 
     function save() {

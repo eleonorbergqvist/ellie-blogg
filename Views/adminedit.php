@@ -1,4 +1,23 @@
         <div style="padding: 15px 150px 15px 150px;">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="<?= $url('/adminhome'); ?>">Posts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $url('/admincategorylist'); ?>">Categories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $url('/admintaglist'); ?>">Tags</a>
+            </li>
+          </ul>
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="<?= $url('/adminhome'); ?>">Posts</a></li>
+              <li class="breadcrumb-item"><a><?= $pageTitle ?></a></li>
+            </ol>
+          </nav>
+
           <?php if(isset($message)): ?>
             <div class="alert alert-danger" role="alert">
               <strong>Oh snap!</strong> <?= $message ?>
@@ -39,12 +58,15 @@
             </div>
             <div class="form-group row">
               <div class="form-group col-sm-10">
-
-                <label class="custom-control custom-checkbox">
-                  <input name="tag_id" type="checkbox" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">Tag</span>
-                </label>
+                <h6>Taggar:</h6>
+                <?php foreach ($tags as $tag): ?>
+                  <?php $active = in_array($tag->getField("id"), $selectedTagIds); ?>
+                  <label class="custom-control custom-checkbox">
+                    <input name="tag_ids[]" type="checkbox" class="custom-control-input" value="<?= $tag->getField('id') ?>" <?= $active ? ' checked' : ''; ?>>
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description"><?= $tag->getField('name')?></span>
+                  </label>
+                <?php endforeach; ?>
 
               </div>
             </div>

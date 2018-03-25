@@ -18,6 +18,11 @@ class AdminPostUpdate {
         $post = Post::get($postId);
 
         $categories = Category::getAll();
+        $tags = Tag::getAll();
+        $selectedTags = $post->getTags();
+        $selectedTagIds = array_map(function ($tag) {
+            return $tag->getField("id"); 
+        }, $selectedTags);
 
         return new View('adminedit.php', [
             'pageTitle' => 'Ändra post',
@@ -27,6 +32,8 @@ class AdminPostUpdate {
             'content' => $post->getField('content'),
             'category_id' => $post->getField('category_id'),
             'categories' => $categories,
+            'tags' => $tags,
+            'selectedTagIds' => $selectedTagIds,
         ]);
     }
 
@@ -38,7 +45,7 @@ class AdminPostUpdate {
         $post = Post::get($postId);
 
         $vars = $request->vars;
-        $valid = strlen($vars['title']) && strlen($vars['content']);
+        $valid = strlen($vars['title']) && strlen($vars['content']);  
         
         if (!$valid) {
             return new View('adminedit.php', [
@@ -56,6 +63,9 @@ class AdminPostUpdate {
             'content' => $vars['content'],
             'category_id' => (int) $vars['category_id'],
         ]);
+
+        $tagIds = $vars["tag_ids"];
+        $post->addTags($tagIds);
 
         try {
             $post->update();

@@ -10,21 +10,17 @@ use Core\View;
 use Core\Auth;
 use Core\Url;
 
-class AdminPostCreate {
+class AdminCategoryList {
     function get($request, $params){
         Auth::verifyLogin($request);
         $user = Auth::getLoggedInUser();
 
-        $tags = Tag::getAll();
         $categories = Category::getAll();
-        $selectedTagIds = [];
 
-        return new View('adminedit.php', [
-            'pageTitle' => 'Skapa post',
+        return new View('admincategorylist.php', [
+            'pageTitle' => 'Admin Categories',
             'user' => $user,
             'categories' => $categories,
-            'tags' => $tags,
-            'selectedTagIds' => $selectedTagIds,
         ]);
     }
 
@@ -34,7 +30,6 @@ class AdminPostCreate {
 
         $vars = $request->vars;
         $valid = strlen($vars['title']) && strlen($vars['content']);
-        $tagIds = $vars["tag_ids"];
 
         $categories = Category::getAll();
         
@@ -58,7 +53,6 @@ class AdminPostCreate {
 
         try {
             $post->save();
-            $post->addTags($tagIds);
             header('Location: '.'http://'.$request->domain.Url::gen('/adminpostupdate/') . $post->getField('id'));
             die();
         } catch (\Exception $e) {
